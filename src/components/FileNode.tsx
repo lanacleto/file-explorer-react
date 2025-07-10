@@ -41,6 +41,22 @@ const FileNode: React.FC<FileNodeProps> = ({
         event.preventDefault();
         onDelete(node.id);
         break;
+      case 'ArrowUp':
+        event.preventDefault();
+        const allTreeItems = Array.from(document.querySelectorAll('[role="treeitem"]')) as HTMLElement[];
+        const currentIndex = allTreeItems.indexOf(event.currentTarget as HTMLElement);
+        if (currentIndex > 0) {
+          allTreeItems[currentIndex - 1].focus();
+        }
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        const allTreeItemsDown = Array.from(document.querySelectorAll('[role="treeitem"]')) as HTMLElement[];
+        const currentIndexDown = allTreeItemsDown.indexOf(event.currentTarget as HTMLElement);
+        if (currentIndexDown < allTreeItemsDown.length - 1) {
+          allTreeItemsDown[currentIndexDown + 1].focus();
+        }
+        break;
     }
   }, [isFolder, node.id, onToggleExpand, onDelete]);
 
