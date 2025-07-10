@@ -1,0 +1,21 @@
+@use './styles/variables.scss' as *;
+
+main {
+  font-family: $font-family-sans;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+  text-align: center;
+  background-color: $background-main;
+  border: 2px solid $border-main;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: $font-size-sm;
+  color: $text-file-explorer;
+} 
