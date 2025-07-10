@@ -17,6 +17,11 @@ export interface FileExplorerProps {
   node: TreeNode | null;
   onDelete: (id: string) => void;
   isRoot?: boolean;
+  isFolderExpanded?: (folderId: string) => boolean;
+  toggleFolderExpansion?: (folderId: string) => void;
+  level?: number;
+  position?: number;
+  totalSiblings?: number;
 }
 
 export interface FileNodeProps {

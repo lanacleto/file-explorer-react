@@ -15,9 +15,18 @@ const FileNode: React.FC<FileNodeProps> = ({
 }) => {
   const isFolder = node.type === NODE_TYPES.FOLDER;
 
-  const getIconForFile = useCallback((filename: string) => {
-    return FileIconService.getFileIcon(filename);
-  }, []);
+  const renderFileIcon = (fileName: string) => {
+    const FileIconComponent = FileIconService.getFileIcon(fileName);
+    return (
+      <span 
+        className={styles.icon} 
+        role="img" 
+        aria-label={`File: ${fileName}`}
+      >
+        <FileIconComponent />
+      </span>
+    );
+  };
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
     switch (event.key) {
@@ -44,19 +53,6 @@ const FileNode: React.FC<FileNodeProps> = ({
       {expanded ? <icons.ArrowDown /> : <icons.ArrowRight />}
     </button>
   );
-
-  const renderFileIcon = (fileName: string) => {
-    const FileIconComponent = getIconForFile(fileName);
-    return (
-      <span 
-        className={styles.icon} 
-        role="img" 
-        aria-label={`File: ${fileName}`}
-      >
-        <FileIconComponent />
-      </span>
-    );
-  };
 
   const renderFolderNameButton = (folderName: string, expanded: boolean) => (
     <button
@@ -124,4 +120,4 @@ const FileNode: React.FC<FileNodeProps> = ({
   );
 };
 
-export default FileNode; 
+export default FileNode;

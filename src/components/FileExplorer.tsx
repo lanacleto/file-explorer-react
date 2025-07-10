@@ -1,19 +1,18 @@
 import React from 'react';
 import { FileExplorerProps, NODE_TYPES } from '../types/fileExplorer';
-import { useTreeExpansion } from '../hooks/useTreeExpansion';
 import FileNode from './FileNode';
 import styles from './FileExplorer.module.scss';
 
 const FileExplorer: React.FC<FileExplorerProps> = ({ 
   node, 
   onDelete, 
-  isRoot = true 
+  isRoot = true,
+  isFolderExpanded,
+  toggleFolderExpansion,
+  level = 1,
+  position = 1,
+  totalSiblings = 1
 }) => {
-  const {
-    toggleFolderExpansion,
-    isFolderExpanded,
-  } = useTreeExpansion();
-
   if (!node) {
     return <div className={styles.loading}>Loading your files...</div>;
   }
@@ -28,7 +27,12 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
               key={childNode.id}
               node={childNode} 
               onDelete={onDelete} 
-              isRoot={false} 
+              isRoot={false}
+              isFolderExpanded={isFolderExpanded}
+              toggleFolderExpansion={toggleFolderExpansion}
+              level={level + 1}
+              position={index + 1}
+              totalSiblings={node.children!.length}
             />
           ))}
         </div>
@@ -36,10 +40,9 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
     );
   }
 
-  const isExpanded = isFolderExpanded(node.id);
+  const isExpanded = isFolderExpanded ? isFolderExpanded(node.id) : false;
   const isFolder = node.type === NODE_TYPES.FOLDER;
   const hasChildren = node.children && node.children.length > 0;
-  const totalSiblings = node.children?.length || 0;
 
   return (
     <>
@@ -47,9 +50,9 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
         node={node} 
         onDelete={onDelete} 
         isExpanded={isExpanded}
-        onToggleExpand={toggleFolderExpansion}
-        level={1}
-        position={1}
+        onToggleExpand={toggleFolderExpansion || (() => {})}
+        level={level}
+        position={position}
         totalSiblings={totalSiblings}
       />
       
@@ -60,7 +63,12 @@ const FileExplorer: React.FC<FileExplorerProps> = ({
               key={childNode.id}
               node={childNode} 
               onDelete={onDelete} 
-              isRoot={false} 
+              isRoot={false}
+              isFolderExpanded={isFolderExpanded}
+              toggleFolderExpansion={toggleFolderExpansion}
+              level={level + 1}
+              position={index + 1}
+              totalSiblings={node.children!.length}
             />
           ))}
         </div>

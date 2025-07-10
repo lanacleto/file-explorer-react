@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FileExplorer from './components/FileExplorer';
+import { useTreeExpansion } from './hooks/useTreeExpansion';
 import api from './api';
 import { TreeNode } from './types/fileExplorer';
 import './App.scss';
@@ -7,6 +8,7 @@ import './App.scss';
 function App() {
   const [directoryTree, setDirectoryTree] = useState<TreeNode | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { isFolderExpanded, toggleFolderExpansion } = useTreeExpansion();
 
   useEffect(() => {
     const loadDirectoryTree = async () => {
@@ -38,7 +40,12 @@ function App() {
       {isLoading ? (
         <div className="loading">Loading file explorer...</div>
       ) : (
-        <FileExplorer node={directoryTree} onDelete={handleDelete} />
+        <FileExplorer 
+          node={directoryTree} 
+          onDelete={handleDelete}
+          isFolderExpanded={isFolderExpanded}
+          toggleFolderExpansion={toggleFolderExpansion}
+        />
       )}
     </main>
   );
