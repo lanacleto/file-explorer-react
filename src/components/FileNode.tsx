@@ -22,6 +22,7 @@ const FileNode: React.FC<FileNodeProps> = ({
         className={styles.icon} 
         role="img" 
         aria-label={`File: ${fileName}`}
+        data-testid="file-icon"
       >
         <FileIconComponent />
       </span>
@@ -68,6 +69,7 @@ const FileNode: React.FC<FileNodeProps> = ({
       className={styles.folderButton}
       aria-label={expanded ? `Collapse ${folderName}` : `Expand ${folderName}`}
       tabIndex={-1}
+      data-testid={expanded ? 'arrow-down' : 'arrow-right'}
     >
       {expanded ? <icons.ArrowDown /> : <icons.ArrowRight />}
     </button>
@@ -98,6 +100,7 @@ const FileNode: React.FC<FileNodeProps> = ({
       }}
       title={`Delete ${itemName}`}
       aria-label={`Delete ${itemName}`}
+      data-testid="delete-button"
     >
       <icons.X />
     </button>
