@@ -4,6 +4,10 @@ I made this project in Svelte first, once this is the framework this role requir
 
 A sophisticated file explorer built with **React** and **TypeScript**, featuring a hierarchical tree structure with interactive folder expansion, file deletion, and comprehensive accessibility support.
 
+## 🌐 Live Demo
+
+**🚀 Deployed on Vercel:** [https://file-explorer-react-one.vercel.app/](https://file-explorer-react-one.vercel.app/)
+
 ## 🚀 Getting Started
 
 ```bash
