@@ -12,8 +12,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ],
     "rules": {
       "import/no-anonymous-default-export": "off"
@@ -41,10 +40,6 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^29.5.2",
     "@types/node": "^20.12.8",
     "cypress": "^14.5.0",
     "react-scripts": "^5.0.1",
